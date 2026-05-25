@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#0A2A6E" />
+    <meta name="description" content="Portal Académico de la Facultad de Ciencias — Universidad de Los Andes (ULA), Venezuela. Consulta tu plan de estudio, calificaciones, inscripciones y progreso académico." />
+    <title>Portal Académico · Facultad de Ciencias · ULA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght=0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link href="/output.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-slate-100 font-sans antialiased">
+    <div id="root" style="display:none"></div>
+
+    <div aria-hidden="true" class="fixed inset-0 -z-10 pointer-events-none">
+      <div class="absolute inset-0 grid-motif opacity-[0.35] dark:opacity-[0.45]"></div>
+      <div class="absolute inset-0 radial-fade"></div>
+    </div>
+
+    <header id="topbar" class="hidden sticky top-0 z-40 backdrop-blur-xl bg-white/70 dark:bg-slate-950/60 border-b border-slate-200/60 dark:border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-3 flex items-center gap-4">
+        <a href="#/dashboard" class="flex items-center gap-3 group" data-testid="nav-home-link">
+          <div class="w-9 h-9 rounded-xl bg-ula-700 dark:bg-ula-600 grid place-items-center text-white shadow-soft">
+            <i class="ph-fill ph-atom text-xl"></i>
+          </div>
+          <div class="leading-tight hidden sm:block">
+            <div class="font-display text-[15px] font-semibold tracking-tight">Facultad de Ciencias</div>
+            <div class="text-[11px] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Universidad de Los Andes</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1 ml-6" id="primary-nav">
+          <a href="#/dashboard" data-route="dashboard" data-testid="nav-dashboard" class="nav-link"><i class="ph ph-squares-four"></i><span>Resumen</span></a>
+          <a href="#/plan" data-route="plan" data-testid="nav-plan" class="nav-link"><i class="ph ph-graph"></i><span>Plan de Estudio</span></a>
+          <a href="#/notas" data-route="notas" data-testid="nav-notas" class="nav-link"><i class="ph ph-exam"></i><span>Notas</span></a>
+          <a href="#/inscripciones" data-route="inscripciones" data-testid="nav-inscripciones" class="nav-link"><i class="ph ph-clipboard-text"></i><span>Inscripciones</span></a>
+          <a href="#/horario" data-route="horario" data-testid="nav-horario" class="nav-link"><i class="ph ph-calendar-blank"></i><span>Horario</span></a>
+          <a href="#/perfil" data-route="perfil" data-testid="nav-perfil" class="nav-link"><i class="ph ph-user-gear"></i><span>Perfil</span></a>
+        </nav>
+
+        <div class="ml-auto flex items-center gap-2">
+          <div class="relative hidden sm:block">
+            <button id="career-trigger" data-testid="career-switcher" class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-900 text-sm">
+              <i class="ph-fill ph-atom text-ula-700 dark:text-ula-300"></i>
+              <span id="career-label">Física</span>
+              <i class="ph ph-caret-down text-slate-400"></i>
+            </button>
+            <div id="career-menu" class="hidden absolute right-0 mt-2 w-64 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft overflow-hidden z-50" data-testid="career-menu"></div>
+          </div>
+
+          <button id="theme-toggle" data-testid="theme-toggle" title="Cambiar tema" class="w-10 h-10 grid place-items-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-900">
+            <i class="ph ph-sun hidden dark:inline"></i>
+            <i class="ph ph-moon dark:hidden"></i>
+          </button>
+
+          <div class="relative">
+            <button id="user-trigger" data-testid="user-menu-trigger" class="flex items-center gap-2 px-2 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-900">
+              <div id="user-avatar" class="w-7 h-7 rounded-lg bg-gradient-to-br from-ula-600 to-ula-800 text-white grid place-items-center text-[11px] font-semibold">YH</div>
+              <span id="user-shortname" class="hidden sm:inline text-sm font-medium">Estudiante</span>
+              <i class="ph ph-caret-down text-slate-400 hidden sm:inline"></i>
+            </button>
+            <div id="user-menu" class="hidden absolute right-0 mt-2 w-56 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft overflow-hidden z-50">
+              <a href="#/perfil" class="menu-item" data-testid="user-menu-perfil"><i class="ph ph-user-gear"></i>Mi Perfil</a>
+              <a href="#/perfil?tab=pin" class="menu-item" data-testid="user-menu-pin"><i class="ph ph-key"></i>Cambiar PIN</a>
+              <button class="menu-item w-full text-left text-rose-600 dark:text-rose-400" id="logout-btn" data-testid="logout-button"><i class="ph ph-sign-out"></i>Cerrar sesión</button>
+            </div>
+          </div>
+
+          <button id="mobile-menu-btn" data-testid="mobile-menu-button" class="md:hidden w-10 h-10 grid place-items-center rounded-xl border border-slate-200 dark:border-slate-800">
+            <i class="ph ph-list text-xl"></i>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-nav" class="hidden md:hidden px-5 pb-3 grid grid-cols-3 gap-2"></div>
+    </header>
+
+    <main id="app-root" class="min-h-screen"></main>
+
+    <footer id="footer" class="hidden border-t border-slate-200/60 dark:border-slate-800/60 mt-16">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+        <div class="flex items-center gap-3">
+          <i class="ph ph-book-open-text"></i>
+          <span class="font-display italic">Initium Sapientiae Timor Domini</span>
+        </div>
+        <div>© <span id="year"></span> Facultad de Ciencias · Universidad de Los Andes · Mérida, Venezuela</div>
+      </div>
+    </footer>
+
+    <div id="toast-root" class="fixed bottom-6 right-6 z-[100] flex flex-col gap-2"></div>
+
+    <div id="modal-root"></div>
+
+    <script src="/data.js"></script>
+    <script src="/storage.js"></script>
+    <script src="/auth.js"></script>
+    <script src="/views.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>
